@@ -1,1 +1,55 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Game</title>
+    <style>
+      .sudoku-grid {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-gap: 2px;
+        width: 360px;
+        margin: 20px auto;
+      }
+      .tile {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #000;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .tile.filled {
+        background-color: #ddd;
+      }
+      .tile.active {
+        border: 2px solid #007BFF;
+      }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="module">
+      import { setupBoard, renderBoard } from './src/game-logic.js';
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        const root = document.getElementById('root');
+        const container = document.createElement('div');
+        container.id = 'sudoku-container';
+        container.classList.add('sudoku-grid');
+        root.appendChild(container);
+
+        setupBoard([
+          { row: 0, col: 0, value: 5 },
+          { row: 1, col: 3, value: 7 },
+          { row: 4, col: 4, value: 6 }
+        ]);
+        renderBoard(container);
+      });
+    </script>
+</body>
+</html>

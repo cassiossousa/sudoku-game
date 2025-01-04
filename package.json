@@ -1,0 +1,20 @@
+{
+  "name": "sudoku-game",
+  "version": "0.0.1",
+  "description": "A simple Sudoku game with interactive number input and validation.",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve ."
+  },
+  "devDependencies": {
+    "serve": "14.2.4"
+  },
+  "keywords": [
+    "sudoku",
+    "game",
+    "javascript",
+    "browser"
+  ],
+  "author": "Cássio Sousa",
+  "license": "MIT"
+}
