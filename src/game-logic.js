@@ -2,6 +2,7 @@ let board = Array.from({ length: 9 }, () => Array(9).fill(null));
 let activeTile = null; // Track the active tile for input
 
 export function setupBoard(initialValues) {
+  resetBoard();
   initialValues.forEach(({ row, col, value }) => {
     board[row][col] = value;
   });
@@ -59,10 +60,13 @@ document &&
     }
   });
 
-// Validate the move (row, column, 3x3 box)
+// Validate the move (tile, row, column, 3x3 box)
 export function isValidMove(row, col, value) {
   row = Number(row);
   col = Number(col);
+
+  // Check tile
+  if (board[row][col] !== null) return false;
 
   // Check row
   if (board[row].includes(value)) return false;
@@ -81,4 +85,20 @@ export function isValidMove(row, col, value) {
     }
   }
   return true;
+}
+
+export function resetBoard() {
+  board = Array.from({ length: 9 }, () => Array(9).fill(null));
+}
+
+export function getBoard() {
+  return board;
+}
+
+export function placeNumber(row, col, value) {
+  if (isValidMove(row, col, value)) {
+    board[row][col] = value;
+    return true;
+  }
+  return false;
 }
