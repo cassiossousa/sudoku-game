@@ -19,7 +19,6 @@
   "devDependencies": {
     "@babel/core": "7.26.0",
     "@babel/plugin-transform-runtime": "7.25.9",
-    "@babel/preset-env": "7.26.0",
     "@commitlint/config-conventional": "19.6.0",
     "babel-eslint": "10.1.0",
     "commitlint": "19.6.1",
