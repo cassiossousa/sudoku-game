@@ -48,17 +48,42 @@ document &&
     const row = activeTile.dataset.row;
     const col = activeTile.dataset.col;
 
-    if (value >= 1 && value <= 9 && isValidMove(row, col, value)) {
-      board[row][col] = value;
-      activeTile.textContent = value;
-      activeTile.classList.add('filled');
-      activeTile.classList.remove('active');
-      activeTile = null;
+    if (value >= 1 && value <= 9) {
+      if (isValidMove(row, col, value)) {
+        board[row][col] = value;
+        activeTile.textContent = value;
+        activeTile.classList.add('filled');
+        activeTile.classList.remove('active');
+        activeTile = null;
+      } else {
+        highlightInvalidTile(activeTile, value);
+      }
     } else if (event.key === 'Escape') {
       activeTile.classList.remove('active'); // Deselect on Escape
       activeTile = null;
     }
   });
+
+// Highlight tile red for 1 second
+export function highlightInvalidTile(tile, value) {
+  tile.classList.add('invalid');
+  tile.textContent = value;
+  setTimeout(() => {
+    tile.textContent = '';
+    tile.classList.remove('invalid');
+  }, 1000);
+}
+
+// Find all valid numbers for the given tile
+export function findAllValidNumbersFor(row, col) {
+  const allValiNumbers = [];
+  for (let num = 1; num <= 9; num++) {
+    if (isValidMove(row, col, num)) {
+      allValiNumbers.push(num);
+    }
+  }
+  return allValiNumbers;
+}
 
 // Validate the move (tile, row, column, 3x3 box)
 export function isValidMove(row, col, value) {
@@ -93,12 +118,4 @@ export function resetBoard() {
 
 export function getBoard() {
   return board;
-}
-
-export function placeNumber(row, col, value) {
-  if (isValidMove(row, col, value)) {
-    board[row][col] = value;
-    return true;
-  }
-  return false;
 }
