@@ -1,6 +1,6 @@
-import { Tile } from './tile';
+import { Tile } from '.';
 
-export class Sudoku {
+export default class Sudoku {
   /**
    * @param {HTMLElement} element
    * @param {number[][]} initialValues

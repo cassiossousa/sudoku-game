@@ -1,7 +1,6 @@
-import { Sudoku } from '../sudoku/sudoku';
-import { Tile } from '../sudoku/tile';
+import { Sudoku, Tile } from '../sudoku';
 
-export class BaseGame {
+export default class BaseGame {
   constructor(boardElement, initialValues) {
     this.boardElement = boardElement;
     this.initialValues = initialValues;

@@ -1,4 +1,4 @@
-export class Tile {
+export default class Tile {
   /**
    * @param {number} row
    * @param {number} col
