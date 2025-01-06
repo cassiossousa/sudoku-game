@@ -38,5 +38,5 @@ export class Tile {
 
     this.element = tileDiv;
     return tileDiv;
-  };
+  }
 }

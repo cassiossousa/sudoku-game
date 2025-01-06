@@ -7,6 +7,7 @@
     "build": "rm -f dist/* && parcel build --no-source-maps index.html",
     "coverage": "jest --coverage --collectCoverageFrom=src/**/*.js",
     "lint": "eslint \"src/**/*.js\"",
+    "prepare": "husky",
     "preinstall": "npx npm-force-resolutions",
     "prettier": "prettier --write \"src/**/*.js\"",
     "start": "parcel index.html",

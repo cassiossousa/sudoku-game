@@ -5,7 +5,7 @@ import {
   highlightInvalidTile,
   findAllValidNumbersFor,
   resetBoard,
-  getBoard
+  getBoard,
 } from './game-logic.js';
 
 describe('Sudoku - Game Logic', () => {
@@ -21,7 +21,7 @@ describe('Sudoku - Game Logic', () => {
     it('should set up the board with initial values', () => {
       const initialValues = [
         { row: 0, col: 0, value: 5 },
-        { row: 4, col: 4, value: 7 }
+        { row: 4, col: 4, value: 7 },
       ];
 
       setupBoard(initialValues);
@@ -29,7 +29,7 @@ describe('Sudoku - Game Logic', () => {
 
       expect(board[0][0]).toBe(5);
       expect(board[4][4]).toBe(7);
-      expect(board[1][1]).toBe(null);  // Ensure untouched tiles remain null
+      expect(board[1][1]).toBe(null); // Ensure untouched tiles remain null
     });
   });
 
@@ -37,7 +37,7 @@ describe('Sudoku - Game Logic', () => {
     it('should render empty tiles for null values', () => {
       renderBoard(container);
       const tiles = container.querySelectorAll('.tile');
-      expect(tiles.length).toBe(81);  // 9x9 grid
+      expect(tiles.length).toBe(81); // 9x9 grid
       expect(tiles[0].textContent).toBe('');
     });
 
@@ -64,7 +64,7 @@ describe('Sudoku - Game Logic', () => {
       expect(tile.classList.contains('invalid')).toBe(true);
       expect(tile.textContent).toBe('8');
 
-      jest.runAllTimers();  // Fast-forward time
+      jest.runAllTimers(); // Fast-forward time
 
       expect(tile.classList.contains('invalid')).toBe(false);
       expect(tile.textContent).toBe('');
@@ -78,7 +78,7 @@ describe('Sudoku - Game Logic', () => {
 
     it('should return false if the tile already contains a value', () => {
       setupBoard([{ row: 0, col: 1, value: 5 }]);
-    expect(isValidMove(0, 1, 3)).toBe(false);
+      expect(isValidMove(0, 1, 3)).toBe(false);
     });
 
     it('should return false if the row already contains the value', () => {
@@ -153,7 +153,7 @@ describe('Sudoku - Game Logic', () => {
       tile.click();
       document.dispatchEvent(new KeyboardEvent('keydown', { key: '3' }));
 
-      expect(tile.textContent).toBe('5');  // Remains unchanged
+      expect(tile.textContent).toBe('5'); // Remains unchanged
     });
 
     it('should deactivate the active tile when Escape is pressed', () => {

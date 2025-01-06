@@ -1,4 +1,4 @@
-import { Sudoku } from "./sudoku";
+import { Sudoku } from './sudoku';
 
 const sudoku = new Sudoku(document.querySelector('.board'), [
   [0, 0, 0, 3, 8, 0, 0, 5, 6],

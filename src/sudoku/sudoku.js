@@ -1,11 +1,10 @@
-import { activateTile } from "../game-logic";
-import { Tile } from "./tile";
+import { activateTile } from '../game-logic';
+import { Tile } from './tile';
 
 export class Sudoku {
-
   /**
-   * @param {HTMLElement} element 
-   * @param {number[][]} initialValues 
+   * @param {HTMLElement} element
+   * @param {number[][]} initialValues
    */
   constructor(element, initialValues) {
     this.element = element;
@@ -37,7 +36,7 @@ export class Sudoku {
         this.board[row][col] = tile;
       }
     }
-  };
+  }
 
   render() {
     const boardDiv = document.createElement('div');
@@ -78,7 +77,7 @@ export class Sudoku {
     }
 
     return boardDiv;
-  };
+  }
 
   update() {
     const newBoard = this.render();

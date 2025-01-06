@@ -1,11 +1,11 @@
 import { Sudoku, Tile } from './sudoku';
 
-/** 
+/**
  * Activates the clicked tile for keyboard input.
  *
  * @param {Sudoku} sudoku
- * @param {Tile} tile 
- * @returns 
+ * @param {Tile} tile
+ * @returns
  */
 export function activateTile(sudoku, tile) {
   if (tile.isActive) {
