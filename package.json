@@ -4,7 +4,7 @@
   "description": "Sudoku Game using Vanilla JavaScript",
   "homepage": ".",
   "scripts": {
-    "build": "parcel build --no-source-maps index.html --dist-dir dist",
+    "build": "parcel build src/index.html --dist-dir dist --public-url ./",
     "deploy": "gh-pages -d dist",
     "coverage": "jest --coverage --collectCoverageFrom=src/**/*.js",
     "lint": "eslint \"src/**/*.js\"",
