@@ -2,7 +2,7 @@
   "name": "sudoku-game",
   "version": "0.0.1",
   "description": "Sudoku Game using Vanilla JavaScript",
-  "main": "src/index.js",
+  "main": "src/index.html",
   "homepage": ".",
   "scripts": {
     "build": "rm -f dist/* && parcel build --no-source-maps index.html",
