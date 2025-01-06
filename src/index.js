@@ -1,17 +1,15 @@
-import { setupBoard, renderBoard } from './game-logic.js';
+import { Sudoku } from "./sudoku";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const root = document.getElementById('root');
-  const container = document.createElement('div');
-  container.id = 'sudoku-container';
-  container.classList.add('sudoku-grid');
-  root.appendChild(container);
+const sudoku = new Sudoku(document.querySelector('.board'), [
+  [0, 0, 0, 3, 8, 0, 0, 5, 6],
+  [3, 0, 0, 0, 0, 6, 0, 0, 0],
+  [0, 0, 0, 0, 4, 0, 0, 3, 0],
+  [8, 0, 7, 0, 0, 0, 0, 0, 1],
+  [0, 0, 1, 0, 7, 0, 9, 0, 0],
+  [9, 0, 0, 0, 0, 0, 2, 0, 4],
+  [0, 7, 0, 0, 9, 0, 0, 0, 0],
+  [0, 0, 0, 4, 0, 0, 0, 0, 3],
+  [1, 4, 0, 0, 2, 5, 0, 0, 0],
+]);
 
-  setupBoard([
-    { row: 0, col: 0, value: 5 },
-    { row: 1, col: 3, value: 7 },
-    { row: 4, col: 4, value: 6 },
-  ]);
-
-  renderBoard(container);
-});
+sudoku.start();

@@ -3,37 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sudoku Game</title>
+    <title>Sudoku Solver</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="title" content="">
     <meta name="author" property="author" content="">
     <meta name="description" content="">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet/less" type="text/css" href="styles.less" />
   </head>
   <body>
-    <div>
+    <div class="title">
       <h1>SUDOKU</h1>
     </div>
 
-    <div id="root"></div>
-    
-    <script type="module">
-      import { setupBoard, renderBoard } from './src/game-logic.js';
-      
-      document.addEventListener('DOMContentLoaded', function() {
-        const root = document.getElementById('root');
-        const container = document.createElement('div');
-        container.id = 'sudoku-container';
-        container.classList.add('sudoku-grid');
-        root.appendChild(container);
+    <div class="sudoku">
+      <div class="board"></div>
+    </div>
 
-        setupBoard([
-          { row: 0, col: 0, value: 5 },
-          { row: 1, col: 3, value: 7 },
-          { row: 4, col: 4, value: 6 }
-        ]);
-        renderBoard(container);
-      });
-    </script>
+    <script type="module" src="src/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/less" ></script>
   </body>
 </html>
