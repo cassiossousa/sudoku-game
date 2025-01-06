@@ -77,15 +77,7 @@ export default class BaseGame {
   }
 
   addKeyboardListener() {
-    if (document) document.addEventListener('keydown', this.handleKeyboardEvent);
-  }
-
-  removeKeyboardListener() {
-    if (document) document.removeEventListener('keydown', this.handleKeyboardEvent);
-  }
-
-  handleKeyboardEvent = (event) => {
-    if (this.activeTileRow === null || this.activeTileCol === null) return;
+    if (!document) return;
 
     // Create a hidden input element if it doesn't exist
     let hiddenInput = document.getElementById('hiddenKeyboardInput');
@@ -103,6 +95,23 @@ export default class BaseGame {
 
     // Focus on the hidden input element to show the keyboard
     hiddenInput.focus();
+
+    // And then we add the event listener.
+    document.addEventListener('keydown', this.handleKeyboardEvent);
+  }
+
+  removeKeyboardListener() {
+    if (!document) return;
+    document.removeEventListener('keydown', this.handleKeyboardEvent);
+  }
+
+  /**
+   * @param {KeyboardEvent} event 
+   */
+  handleKeyboardEvent = (event) => {
+    event.stopPropagation();
+
+    if (this.activeTileRow === null || this.activeTileCol === null) return;
 
     // Handle actual keyboard event.
     const value = Number(event.key);
