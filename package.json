@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rm -f dist/* && parcel build --no-source-maps index.html",
     "coverage": "jest --coverage --collectCoverageFrom=src/**/*.js",
-    "deploy": "rm -f dist/* && parcel build --no-source-maps index.html && gh-pages -d dist",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint \"src/**/*.js\"",
     "prepare": "husky",
     "preinstall": "npx npm-force-resolutions",
