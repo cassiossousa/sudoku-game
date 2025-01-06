@@ -87,6 +87,24 @@ export default class BaseGame {
   handleKeyboardEvent = (event) => {
     if (this.activeTileRow === null || this.activeTileCol === null) return;
 
+    // Create a hidden input element if it doesn't exist
+    let hiddenInput = document.getElementById('hiddenKeyboardInput');
+    if (!hiddenInput) {
+      hiddenInput = document.createElement('input');
+      hiddenInput.type = 'text';
+      hiddenInput.id = 'hiddenKeyboardInput';
+      hiddenInput.style.position = 'absolute';
+      hiddenInput.style.opacity = 0;
+      hiddenInput.style.height = 0;
+      hiddenInput.style.width = 0;
+      hiddenInput.style.zIndex = -1;
+      document.body.appendChild(hiddenInput);
+    }
+
+    // Focus on the hidden input element to show the keyboard
+    hiddenInput.focus();
+
+    // Handle actual keyboard event.
     const value = Number(event.key);
 
     if (value >= 1 && value <= 9) {
