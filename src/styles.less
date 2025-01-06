@@ -1,5 +1,6 @@
 // Variables
 @size-tile: 40px;
+@size-spacing: calc(@size-tile / 4);
 @size-border: 1px;
 @color-bd: #000;
 @color-bd-active: #007BFF;
@@ -31,13 +32,15 @@ body {
 
   > .board {
     display: inline-block;
+    margin-left: @size-spacing;
+    margin-right: @size-spacing;
 
     .board-row {
       display: flex;
-      gap: calc(@size-tile / 4);
+      gap: @size-spacing;
 
       &:not(:last-child) {
-        margin-bottom: calc(@size-tile / 4);
+        margin-bottom: @size-spacing;
       }
   
       .box {
