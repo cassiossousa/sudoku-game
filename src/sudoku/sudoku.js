@@ -23,9 +23,9 @@ export class Sudoku {
         let tile;
 
         if (initialValues && initialValues[row] && initialValues[row][col]) {
-          tile = new Tile(row, col, initialValues[row][col], true);
+          tile = new Tile(row, col, initialValues[row][col]);
         } else {
-          tile = new Tile(row, col, null, false);
+          tile = new Tile(row, col, null);
         }
 
         this.board[row][col] = tile;

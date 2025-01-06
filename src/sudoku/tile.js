@@ -3,7 +3,6 @@ export class Tile {
    * @param {number} row
    * @param {number} col
    * @param {number} value
-   * @param {boolean} isInitial
    */
   constructor(row, col, value) {
     this.row = row;
