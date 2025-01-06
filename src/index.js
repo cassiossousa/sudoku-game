@@ -1,15 +1,2 @@
-import BaseGame from './base-game';
-
-const game = new BaseGame(document.querySelector('.board'), [
-  [0, 0, 0, 3, 8, 0, 0, 5, 6],
-  [3, 0, 0, 0, 0, 6, 0, 0, 0],
-  [0, 0, 0, 0, 4, 0, 0, 3, 0],
-  [8, 0, 7, 0, 0, 0, 0, 0, 1],
-  [0, 0, 1, 0, 7, 0, 9, 0, 0],
-  [9, 0, 0, 0, 0, 0, 2, 0, 4],
-  [0, 7, 0, 0, 9, 0, 0, 0, 0],
-  [0, 0, 0, 4, 0, 0, 0, 0, 3],
-  [1, 4, 0, 0, 2, 5, 0, 0, 0],
-]);
-
-game.start();
+export { BaseGame } from './game';
+export { Sudoku, Tile } from './sudoku';
