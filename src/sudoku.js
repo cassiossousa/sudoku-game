@@ -1,4 +1,4 @@
-import { Tile } from '.';
+import Tile from './tile';
 
 export default class Sudoku {
   /**

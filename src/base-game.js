@@ -1,4 +1,5 @@
-import { Sudoku, Tile } from '../sudoku';
+import Sudoku from './sudoku';
+import Tile from './tile';
 
 export default class BaseGame {
   constructor(boardElement, initialValues) {
