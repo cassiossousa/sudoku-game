@@ -12,7 +12,7 @@
     "prepare": "husky",
     "preinstall": "npx npm-force-resolutions",
     "prettier": "prettier --write \"src/**/*.js\"",
-    "start": "parcel index.html",
+    "start": "parcel src/index.html",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
