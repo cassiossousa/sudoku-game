@@ -52,6 +52,10 @@ describe('Sudoku - Game Logic', () => {
   });
 
   describe('highlightInvalidTile()', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+    });
+
     it('should highlight a tile as invalid and clear it after timeout', () => {
       renderBoard(container);
       const tile = container.querySelector('.tile[data-row="0"][data-col="0"]');
@@ -60,10 +64,10 @@ describe('Sudoku - Game Logic', () => {
       expect(tile.classList.contains('invalid')).toBe(true);
       expect(tile.textContent).toBe('8');
 
-      // jest.runAllTimers();  // Fast-forward time
+      jest.runAllTimers();  // Fast-forward time
 
-      // expect(tile.classList.contains('invalid')).toBe(false);
-      // expect(tile.textContent).toBe('');
+      expect(tile.classList.contains('invalid')).toBe(false);
+      expect(tile.textContent).toBe('');
     });
   });
 
