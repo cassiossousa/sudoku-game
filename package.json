@@ -8,6 +8,7 @@
     "deploy": "gh-pages -d dist",
     "coverage": "jest --coverage --collectCoverageFrom=src/**/*.js",
     "lint": "eslint \"src/**/*.js\"",
+    "parcel": "parcel",
     "prepare": "husky",
     "preinstall": "npx npm-force-resolutions",
     "prettier": "prettier --write \"src/**/*.js\"",
