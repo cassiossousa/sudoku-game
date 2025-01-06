@@ -1,42 +1,30 @@
-let board = Array.from({ length: 9 }, () => Array(9).fill(null));
-let activeTile = null; // Track the active tile for input
+import { Sudoku, Tile } from './sudoku';
 
-export function setupBoard(initialValues) {
-  resetBoard();
-  initialValues.forEach(({ row, col, value }) => {
-    board[row][col] = value;
-  });
-}
+/** 
+ * Activates the clicked tile for keyboard input.
+ *
+ * @param {Sudoku} sudoku
+ * @param {Tile} tile 
+ * @returns 
+ */
+export function activateTile(sudoku, tile) {
+  if (tile.isActive) {
+    tile.isActive = false;
+    sudoku.activeTileRow = null;
+    sudoku.activeTileCol = null;
+  } else {
+    tile.isActive = true;
 
-export function renderBoard(container) {
-  container.innerHTML = ''; // Clear existing tiles
-  for (let row = 0; row < 9; row++) {
-    for (let col = 0; col < 9; col++) {
-      const tile = document.createElement('div');
-      tile.className = 'tile';
-      tile.dataset.row = row;
-      tile.dataset.col = col;
-
-      if (board[row][col] !== null) {
-        tile.textContent = board[row][col];
-        tile.classList.add('filled');
-      } else {
-        tile.addEventListener('click', () => activateTile(tile));
-      }
-      container.appendChild(tile);
+    if (sudoku.activeTileCol !== null && sudoku.activeTileRow !== null) {
+      const activeTile = sudoku.board[sudoku.activeTileRow][sudoku.activeTileCol];
+      activeTile.isActive = false;
     }
-  }
-}
 
-// Activate the clicked tile for keyboard input
-function activateTile(tile) {
-  if (tile.classList.contains('filled')) return;
-
-  if (activeTile) {
-    activeTile.classList.remove('active'); // Deactivate previous tile
+    sudoku.activeTileRow = tile.row;
+    sudoku.activeTileCol = tile.col;
   }
-  tile.classList.add('active');
-  activeTile = tile;
+
+  sudoku.update();
 }
 
 // Listen for keyboard events to fill the active tile

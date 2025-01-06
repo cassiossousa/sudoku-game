@@ -55,6 +55,7 @@ body {
 .tile {
   width: @size-tile;
   height: @size-tile;
+  box-sizing: border-box;
   border: @size-border solid @color-bd;
   font-size: calc(0.6 * @size-tile);
   cursor: pointer;
@@ -64,7 +65,9 @@ body {
   justify-content: center;
 
   &.initial {
+    background-color: @color-bg-filled;
     color: @color-ft-initial;
+    cursor: auto;
   }
 
   &.filled {
@@ -73,6 +76,7 @@ body {
 
   &.active {
     border-color: @color-bd-active;
+    border-width: calc(1px + @size-border);
   }
 
   &.invalid {

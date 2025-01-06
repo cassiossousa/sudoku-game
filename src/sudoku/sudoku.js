@@ -1,3 +1,4 @@
+import { activateTile } from "../game-logic";
 import { Tile } from "./tile";
 
 export class Sudoku {
@@ -10,18 +11,14 @@ export class Sudoku {
     this.element = element;
     this.initialValues = initialValues;
     this.board = Array.from({ length: 9 }, () => Array(9).fill(null));
+
+    this.activeTileRow = null;
+    this.activeTileCol = null;
   }
 
   start() {
     this.restart();
-
-    const newBoard = this.render();
-
-    const parentElement = this.element.parentNode;
-    parentElement.removeChild(this.element);
-
-    this.element = newBoard;
-    parentElement.appendChild(this.element);
+    this.update();
   }
 
   restart() {
@@ -67,6 +64,13 @@ export class Sudoku {
             const row = 3 * boardRow + boxRow;
             const col = 3 * boardCol + boxCol;
             const tileDiv = this.board[row][col].render();
+
+            if (!this.board[row][col].isInitial) {
+              tileDiv.addEventListener('click', () => {
+                activateTile(this, this.board[row][col]);
+              });
+            }
+
             boxRowDiv.appendChild(tileDiv);
           }
         }
@@ -75,4 +79,14 @@ export class Sudoku {
 
     return boardDiv;
   };
+
+  update() {
+    const newBoard = this.render();
+
+    const parentElement = this.element.parentNode;
+    parentElement.removeChild(this.element);
+
+    this.element = newBoard;
+    parentElement.appendChild(this.element);
+  }
 }
