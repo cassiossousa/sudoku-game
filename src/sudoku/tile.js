@@ -5,15 +5,12 @@ export class Tile {
    * @param {number} value
    * @param {boolean} isInitial
    */
-  constructor(row, col, value, isInitial) {
+  constructor(row, col, value) {
     this.row = row;
     this.col = col;
     this.value = value;
-    this.isInitial = isInitial;
     this.element = null;
     this.guesses = [];
-    this.isActive = false;
-    this.isInvalid = false;
   }
 
   render() {
@@ -22,18 +19,6 @@ export class Tile {
 
     if (this.value) {
       tileDiv.textContent = this.value;
-    }
-
-    if (this.isInitial) {
-      tileDiv.classList.add('initial');
-    }
-
-    if (this.isActive) {
-      tileDiv.classList.add('active');
-    }
-
-    if (this.isInvalid) {
-      tileDiv.classList.add('invalid');
     }
 
     this.element = tileDiv;

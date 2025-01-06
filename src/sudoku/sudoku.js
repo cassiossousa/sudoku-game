@@ -1,4 +1,3 @@
-import { activateTile } from '../game-logic';
 import { Tile } from './tile';
 
 export class Sudoku {
@@ -6,31 +5,27 @@ export class Sudoku {
    * @param {HTMLElement} element
    * @param {number[][]} initialValues
    */
-  constructor(element, initialValues) {
+  constructor(element) {
     this.element = element;
-    this.initialValues = initialValues;
     this.board = Array.from({ length: 9 }, () => Array(9).fill(null));
-
-    this.activeTileRow = null;
-    this.activeTileCol = null;
   }
 
-  start() {
-    this.restart();
-    this.update();
-  }
-
-  restart() {
+  /**
+   * Restarts the Sudoku board with the given initial values.
+   *
+   * @param {number[][]} initialValues
+   */
+  restart(initialValues) {
     this.board = Array.from({ length: 9 }, () => Array(9).fill(null));
 
     for (let row = 0; row < 9; row++) {
       for (let col = 0; col < 9; col++) {
         let tile;
 
-        if (this.initialValues && this.initialValues[row] && this.initialValues[row][col]) {
-          tile = new Tile(row, col, [this.initialValues[row][col]], true);
+        if (initialValues && initialValues[row] && this.initialValues[row][col]) {
+          tile = new Tile(row, col, this.initialValues[row][col], true);
         } else {
-          tile = new Tile(row, col, [], false);
+          tile = new Tile(row, col, null, false);
         }
 
         this.board[row][col] = tile;
@@ -63,13 +58,6 @@ export class Sudoku {
             const row = 3 * boardRow + boxRow;
             const col = 3 * boardCol + boxCol;
             const tileDiv = this.board[row][col].render();
-
-            if (!this.board[row][col].isInitial) {
-              tileDiv.addEventListener('click', () => {
-                activateTile(this, this.board[row][col]);
-              });
-            }
-
             boxRowDiv.appendChild(tileDiv);
           }
         }
