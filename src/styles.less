@@ -2,6 +2,7 @@
 @size-tile: 2.5rem;
 @size-spacing: calc(@size-tile / 4);
 @size-border: 1px;
+@font-size-tile: calc(0.6 * @size-tile);
 @color-bd: #000;
 @color-bd-tile-active: #3B82F6;
 @color-bg-tile: #F9FAFB;
@@ -27,7 +28,7 @@ body {
     color: @color-ft-title;
     font-size: @title-font-size;
     line-height: 1.5;
-    margin: 0 0 calc(3* @size-spacing) 0;
+    margin: 0 0 @size-spacing 0;
   }
 }
 
@@ -68,7 +69,7 @@ body {
   height: @size-tile;
   box-sizing: border-box;
   border: @size-border solid @color-bd;
-  font-size: calc(0.6 * @size-tile);
+  font-size: @font-size-tile;
   cursor: pointer;
 
   display: flex;
@@ -99,5 +100,39 @@ body {
     border-color: @color-bd-tile-active;
     background-color: @color-bg-tile-active;
     border-width: calc(1px + @size-border);
+  }
+}
+
+.keypad {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: @size-spacing;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+
+  &.hidden {
+    display: none;
+  }
+
+  button {
+    min-width: @size-tile;
+    height: @size-tile;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: @font-size-tile;
+    cursor: pointer;
+
+    &.clear {
+      grid-column: span 3;
+      background-color: #ff4d4d;
+      color: #fff;
+    }
   }
 }

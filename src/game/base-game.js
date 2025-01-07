@@ -7,12 +7,14 @@ export default class BaseGame {
     this.sudoku = null;
     this.activeTileRow = null;
     this.activeTileCol = null;
+    this.keypadEl = document && document.querySelector('div.keypad');
   }
 
   start() {
     this.sudoku = new Sudoku(this.boardElement);
     this.sudoku.restart(this.initialValues);
     this.updateSudoku();
+    this.addListenersToKeypad();
   }
 
   updateSudoku() {
@@ -53,18 +55,19 @@ export default class BaseGame {
       tile.element.classList.remove('active');
       this.activeTileRow = null;
       this.activeTileCol = null;
-      this.removeKeyboardListener();
+      this.keypadEl.classList.add('hidden');
     } else {
-      if (this.activeTileRow !== null && this.activeTileCol !== null) {
-        const activeTile = this.sudoku.board[this.activeTileRow][this.activeTileCol];
-        activeTile.element.classList.remove('active');
-      } else {
-        this.addKeyboardListener();
-      }
+      this.deactivateTile();
 
       tile.element.classList.add('active');
       this.activeTileRow = tile.row;
       this.activeTileCol = tile.col;
+
+      if (this.keypadEl) {
+        const rect = tile.element.getBoundingClientRect();
+        this.repositionKeypad(rect, this.activeTileRow, this.activeTileCol);
+        this.keypadEl.classList.remove('hidden');
+      }
     }
   }
 
@@ -76,71 +79,56 @@ export default class BaseGame {
     this.activeTileCol = null;
   }
 
-  addKeyboardListener() {
+  addListenersToKeypad() {
+    if (!this.keypadEl) return;
+
+    this.keypadEl.addEventListener('click', (e) => {
+      if (this.activeTileRow === null || this.activeTileCol === null) return;
+
+      const activeTile = this.sudoku.board[this.activeTileRow][this.activeTileCol];
+      const key = e.target.dataset.key;
+
+      if (key === 'clear') {
+        activeTile.value = null;
+      } else if (key) {
+        activeTile.value = parseInt(key, 10);
+      }
+  
+      // Hide keypad after selection
+      this.keypadEl.classList.add('hidden');
+      this.deactivateTile();
+      this.updateSudoku();
+    });
+
     if (!document) return;
 
-    // Create a hidden input element if it doesn't exist
-    let hiddenInput = document.getElementById('hiddenKeyboardInput');
-    if (!hiddenInput) {
-      hiddenInput = document.createElement('input');
-      hiddenInput.type = 'text';
-      hiddenInput.id = 'hiddenKeyboardInput';
-      hiddenInput.style.position = 'absolute';
-      hiddenInput.style.opacity = 0;
-      hiddenInput.style.height = 0;
-      hiddenInput.style.width = 0;
-      hiddenInput.style.zIndex = -1;
-      document.body.appendChild(hiddenInput);
-    }
-
-    // Focus on the hidden input element to show the keyboard
-    hiddenInput.focus();
-
-    // And then we add the event listener.
-    document.addEventListener('keydown', this.handleKeyboardEvent);
-  }
-
-  removeKeyboardListener() {
-    if (!document) return;
-    document.removeEventListener('keydown', this.handleKeyboardEvent);
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('div.tile') && !e.target.closest('div.keypad')) {
+        this.keypadEl.classList.add('hidden');
+        this.deactivateTile();
+      }
+    });
   }
 
   /**
-   * @param {KeyboardEvent} event 
+   * @param {DOMRect} rect
+   * @param {number} activeTileRow
+   * @param {number} activeTileCol
    */
-  handleKeyboardEvent = (event) => {
-    event.stopPropagation();
+  repositionKeypad(rect, activeTileRow, activeTileCol) {
+    if (!this.keypadEl) return;
 
-    if (this.activeTileRow === null || this.activeTileCol === null) return;
-
-    // Handle actual keyboard event.
-    const value = Number(event.key);
-
-    if (value >= 1 && value <= 9) {
-      this.fillActiveTile(value);
-      this.deactivateTile();
-      this.removeKeyboardListener();
-      this.updateSudoku();
-    } else if (event.key === 'Backspace' || event.key === 'Delete') {
-      this.fillActiveTile(null);
-      this.deactivateTile();
-      this.removeKeyboardListener();
-      this.updateSudoku();
-    } else if (event.key === 'Escape') {
-      this.deactivateTile();
-      this.removeKeyboardListener();
+    if (activeTileRow < 4) {
+      this.keypadEl.style.top = `${rect.bottom - (rect.height / 2.0) + window.scrollY}px`;
+    } else {
+      this.keypadEl.style.top = `${rect.top + (rect.height / 2.0) + window.scrollY - this.keypadEl.clientHeight}px`;
     }
-  };
 
-  /**
-   * Fills active tile with the provided value
-   *
-   * @param {number | null} value
-   */
-  fillActiveTile(value) {
-    if (this.activeTileRow === null || this.activeTileCol === null) return;
-    const activeTile = this.sudoku.board[this.activeTileRow][this.activeTileCol];
-    activeTile.value = value;
+    if (activeTileCol < 4) {
+      this.keypadEl.style.left = `${rect.right - (rect.width / 2.0) + window.scrollX}px`;
+    } else {
+      this.keypadEl.style.left = `${rect.left + (rect.width / 2.0) + window.scrollX - this.keypadEl.clientWidth}px`;
+    }
   }
 
   /**
