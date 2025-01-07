@@ -33,17 +33,16 @@ body {
 }
 
 .sudoku {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
   gap: @size-spacing;
-  padding: 0 @size-spacing;
 
   > .board {
-    display: inline-block;
-    width: 100%; // Make board responsive
-    max-width: 450px; // Prevent it from stretching too wide
+    display: block; // Ensures margins apply correctly
+    margin: 0 @size-spacing; // Horizontal margins
+    max-width: 450px; // Prevents stretching
+    width: 100%; // Makes it responsive
+    box-sizing: border-box;
 
     .board-row {
       display: flex;
