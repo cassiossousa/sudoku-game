@@ -1,5 +1,5 @@
 // Variables
-@size-tile: 2.5rem;
+@size-tile: 2.4rem;
 @size-spacing: calc(@size-tile / 4);
 @size-border: 1px;
 @font-size-tile: calc(0.6 * @size-tile);
@@ -39,7 +39,7 @@ body {
 
   > .board {
     display: block; // Ensures margins apply correctly
-    margin: 0 @size-spacing; // Horizontal margins
+    margin: 0 calc(2 * @size-spacing); // Horizontal margins
     max-width: 450px; // Prevents stretching
     width: 100%; // Makes it responsive
     box-sizing: border-box;
