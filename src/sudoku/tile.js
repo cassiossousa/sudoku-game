@@ -9,18 +9,18 @@ export default class Tile {
     this.col = col;
     this.value = value;
     this.element = null;
-    this.guesses = [];
+    this.pencilMarks = [];
   }
 
   render() {
-    const tileDiv = document.createElement('div');
-    tileDiv.classList.add('tile');
+    const tileEl = document.createElement('div');
+    tileEl.classList.add('tile');
 
     if (this.value) {
-      tileDiv.textContent = this.value;
+      tileEl.textContent = this.value;
     }
 
-    this.element = tileDiv;
-    return tileDiv;
+    this.element = tileEl;
+    return tileEl;
   }
 }

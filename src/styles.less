@@ -1,14 +1,18 @@
 // Variables
-@size-tile: 40px;
+@size-tile: 2.5rem;
 @size-spacing: calc(@size-tile / 4);
 @size-border: 1px;
 @color-bd: #000;
-@color-bd-active: #007BFF;
-@color-bg-invalid: rgba(255, 0, 0, 0.7);
-@color-bg-filled: #ddd;
-@color-ft-initial: blue;
+@color-bd-tile-active: #3B82F6;
+@color-bg-tile: #F9FAFB;
+@color-bg-tile-initial: #E0E7FF;
+@color-bg-tile-active: #BEE7C8;
+@color-bg-tile-invalid: rgba(255, 77, 77, 0.2);
+@color-ft-tile: #333333;
+@color-ft-tile-initial: #1E3A8A;
+@color-ft-tile-invalid: #B91C1C;
 @color-ft-title: orange;
-@title-font-size: 32px;
+@title-font-size: 2rem;
 
 // Styles
 body {
@@ -22,13 +26,17 @@ body {
   h1 {
     color: @color-ft-title;
     font-size: @title-font-size;
+    line-height: 1.5;
     margin: 0 0 calc(3* @size-spacing) 0;
   }
 }
 
 .sudoku {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: @size-spacing;
 
   > .board {
     display: inline-block;
@@ -67,22 +75,29 @@ body {
   align-items: center;
   justify-content: center;
 
+  background-color: @color-bg-tile;
+  color: @color-ft-tile;
+
+  &.invalid {
+    background-color: @color-bg-tile-invalid;
+    color: @color-ft-tile-invalid;
+  }
+
   &.initial {
-    background-color: @color-bg-filled;
-    color: @color-ft-initial;
+    background-color: @color-bg-tile-initial;
+    color: @color-ft-tile-initial;
     cursor: auto;
   }
 
-  &.filled {
-    background-color: @color-bg-filled;
+  &.invalid.initial {
+    background-color: @color-bg-tile-invalid;
+    color: @color-ft-tile-initial;
+    cursor: auto;
   }
 
   &.active {
-    border-color: @color-bd-active;
+    border-color: @color-bd-tile-active;
+    background-color: @color-bg-tile-active;
     border-width: calc(1px + @size-border);
-  }
-
-  &.invalid {
-    background-color: @color-bg-invalid;
   }
 }
