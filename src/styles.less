@@ -112,7 +112,7 @@ body {
   background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  padding: 8px;
   z-index: 1000;
   border-radius: 8px;
   transition: transform 0.2s ease;
@@ -122,8 +122,8 @@ body {
   }
 
   button {
-    min-width: @size-tile;
-    height: @size-tile;
+    min-width: calc(@size-tile * 0.9);
+    height: calc(@size-tile * 0.9);
     display: flex;
     align-items: center;
     justify-content: center;

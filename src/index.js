@@ -1,6 +1,6 @@
-import { BaseGame } from './game';
+import { SudokuGame } from './game';
 
-const game = new BaseGame(document.querySelector('.board'), [
+const game = new SudokuGame(document.querySelector('.board'), [
   [0, 0, 0, 3, 8, 0, 0, 5, 6],
   [3, 0, 0, 0, 0, 6, 0, 0, 0],
   [0, 0, 0, 0, 4, 0, 0, 3, 0],

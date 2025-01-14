@@ -1,6 +1,6 @@
 import { Sudoku, Tile } from '../sudoku';
 
-export default class BaseGame {
+export default class SudokuGame {
   constructor(boardElement, initialValues) {
     this.boardElement = boardElement;
     this.initialValues = initialValues;
@@ -119,9 +119,9 @@ export default class BaseGame {
     if (!this.keypadEl) return;
 
     if (activeTileRow < 4) {
-      this.keypadEl.style.top = `${rect.bottom - rect.height / 2.0 + window.scrollY}px`;
+      this.keypadEl.style.top = `${rect.top + rect.height / 2.0 + window.scrollY}px`;
     } else {
-      this.keypadEl.style.top = `${rect.top + rect.height / 2.0 + window.scrollY - this.keypadEl.clientHeight}px`;
+      this.keypadEl.style.top = `${rect.bottom - rect.height / 2.0 + window.scrollY - this.keypadEl.clientHeight}px`;
     }
 
     if (activeTileCol < 4) {

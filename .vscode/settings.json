@@ -20,5 +20,6 @@
   "less.format.options": {
     "tabSize": 2,
     "insertSpaces": true
-  }
+  },
+  "editor.tabSize": 2
 }

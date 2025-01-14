@@ -1,1 +1,1 @@
-export { default as BaseGame } from './base-game.js';
+export { default as SudokuGame } from './sudoku-game.js';
