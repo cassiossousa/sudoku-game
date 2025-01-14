@@ -8,13 +8,29 @@
     "deploy": "gh-pages -d dist",
     "coverage": "jest --coverage --collectCoverageFrom=src/**/*.js",
     "lint": "eslint \"src/**/*.js\"",
+    "lint-staged": "lint-staged",
     "parcel": "parcel",
     "prepare": "husky",
     "preinstall": "npx npm-force-resolutions",
     "prettier": "prettier --write \"src/**/*.js\"",
+    "postinstall": "husky",
     "start": "parcel src/index.html",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.html": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.less": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@babel/runtime": "7.12.5"
@@ -35,6 +51,7 @@
     "husky": "9.1.7",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
+    "lint-staged": "15.3.0",
     "parcel": "2.13.3",
     "prettier": "3.4.2"
   },

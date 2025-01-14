@@ -93,7 +93,7 @@ export default class BaseGame {
       } else if (key) {
         activeTile.value = parseInt(key, 10);
       }
-  
+
       // Hide keypad after selection
       this.keypadEl.classList.add('hidden');
       this.deactivateTile();
@@ -119,15 +119,15 @@ export default class BaseGame {
     if (!this.keypadEl) return;
 
     if (activeTileRow < 4) {
-      this.keypadEl.style.top = `${rect.bottom - (rect.height / 2.0) + window.scrollY}px`;
+      this.keypadEl.style.top = `${rect.bottom - rect.height / 2.0 + window.scrollY}px`;
     } else {
-      this.keypadEl.style.top = `${rect.top + (rect.height / 2.0) + window.scrollY - this.keypadEl.clientHeight}px`;
+      this.keypadEl.style.top = `${rect.top + rect.height / 2.0 + window.scrollY - this.keypadEl.clientHeight}px`;
     }
 
     if (activeTileCol < 4) {
-      this.keypadEl.style.left = `${rect.right - (rect.width / 2.0) + window.scrollX}px`;
+      this.keypadEl.style.left = `${rect.right - rect.width / 2.0 + window.scrollX}px`;
     } else {
-      this.keypadEl.style.left = `${rect.left + (rect.width / 2.0) + window.scrollX - this.keypadEl.clientWidth}px`;
+      this.keypadEl.style.left = `${rect.left + rect.width / 2.0 + window.scrollX - this.keypadEl.clientWidth}px`;
     }
   }
 
