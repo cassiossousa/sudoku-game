@@ -1,15 +1,6 @@
-import { SudokuGame } from './game';
+import { SudokuGame, examples } from './game';
 
-const game = new SudokuGame(document.querySelector('.board'), [
-  [0, 0, 0, 3, 8, 0, 0, 5, 6],
-  [3, 0, 0, 0, 0, 6, 0, 0, 0],
-  [0, 0, 0, 0, 4, 0, 0, 3, 0],
-  [8, 0, 7, 0, 0, 0, 0, 0, 1],
-  [0, 0, 1, 0, 7, 0, 9, 0, 0],
-  [9, 0, 0, 0, 0, 0, 2, 0, 4],
-  [0, 7, 0, 0, 9, 0, 0, 0, 0],
-  [0, 0, 0, 4, 0, 0, 0, 0, 3],
-  [1, 4, 0, 0, 2, 5, 0, 0, 0],
-]);
+const randomExample = examples[Math.floor(Math.random() * examples.length)];
+const game = new SudokuGame(document.querySelector('.board'), randomExample);
 
 game.start();
